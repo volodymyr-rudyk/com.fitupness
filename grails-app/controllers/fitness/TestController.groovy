@@ -5,6 +5,9 @@ class TestController {
     def index() {
     render view:'w', model: [x : 4]
 
+
+
+
     }
     def test(String name){
 
