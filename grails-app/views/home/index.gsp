@@ -13,9 +13,10 @@
 </head>
 
 <body>
+<div class="container">
+    <a class="btn btn-primary" href="#">fff</a>
 
-<a class="btn btn-primary" href="#">Go home</a>
-
-bla
+    bla
+</div>
 </body>
 </html>
