@@ -1,3 +1,8 @@
+import com.fitupness.auth.AuthConfig
+import com.fitupness.controller.authentication.AuthController
+import grails.plugin.springsecurity.SpringSecurityUtils
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -16,19 +21,19 @@ grails.project.groupId = appName // change this to alter the default package nam
 // The ACCEPT header will not be used for content negotiation for user agents containing the following strings (defaults to the 4 major rendering engines)
 grails.mime.disable.accept.header.userAgents = ['Gecko', 'WebKit', 'Presto', 'Trident']
 grails.mime.types = [ // the first one is the default format
-    all:           '*/*', // 'all' maps to '*' or the first available format in withFormat
-    atom:          'application/atom+xml',
-    css:           'text/css',
-    csv:           'text/csv',
-    form:          'application/x-www-form-urlencoded',
-    html:          ['text/html','application/xhtml+xml'],
-    js:            'text/javascript',
-    json:          ['application/json', 'text/json'],
-    multipartForm: 'multipart/form-data',
-    rss:           'application/rss+xml',
-    text:          'text/plain',
-    hal:           ['application/hal+json','application/hal+xml'],
-    xml:           ['text/xml', 'application/xml']
+                      all          : '*/*', // 'all' maps to '*' or the first available format in withFormat
+                      atom         : 'application/atom+xml',
+                      css          : 'text/css',
+                      csv          : 'text/csv',
+                      form         : 'application/x-www-form-urlencoded',
+                      html         : ['text/html', 'application/xhtml+xml'],
+                      js           : 'text/javascript',
+                      json         : ['application/json', 'text/json'],
+                      multipartForm: 'multipart/form-data',
+                      rss          : 'application/rss+xml',
+                      text         : 'text/plain',
+                      hal          : ['application/hal+json', 'application/hal+xml'],
+                      xml          : ['text/xml', 'application/xml']
 ]
 
 // URL Mapping Cache Max Size, defaults to 5000
@@ -71,7 +76,7 @@ grails.enable.native2ascii = true
 // packages to include in Spring bean scanning
 grails.spring.bean.packages = []
 // whether to disable processing of multi part requests
-grails.web.disable.multipart=false
+grails.web.disable.multipart = false
 
 // request parameters to mask when logging exceptions
 grails.exceptionresolver.params.exclude = ['password']
@@ -103,15 +108,79 @@ log4j.main = {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
 
-    error  'org.codehaus.groovy.grails.web.servlet',        // controllers
-           'org.codehaus.groovy.grails.web.pages',          // GSP
-           'org.codehaus.groovy.grails.web.sitemesh',       // layouts
-           'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping',        // URL mapping
-           'org.codehaus.groovy.grails.commons',            // core / classloading
-           'org.codehaus.groovy.grails.plugins',            // plugins
-           'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
-           'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
+    error 'org.codehaus.groovy.grails.web.servlet',        // controllers
+            'org.codehaus.groovy.grails.web.pages',          // GSP
+            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
+            'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+            'org.codehaus.groovy.grails.web.mapping',        // URL mapping
+            'org.codehaus.groovy.grails.commons',            // core / classloading
+            'org.codehaus.groovy.grails.plugins',            // plugins
+            'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
+            'org.springframework',
+            'org.hibernate',
+            'net.sf.ehcache.hibernate'
 }
+
+// Added by the Spring Security Core plugin:
+//defauls
+//grails.plugin.springsecurity.password.algorithm = 'bcrypt'
+
+//password.algorithm	'bcrypt'	passwordEncoder algorithm; 'bcrypt' to use bcrypt, 'pbkdf2' to use PBKDF2, or any message digest algorithm that is supported in your JDK
+//password.encodeHashAsBase64	false	If true, Base64-encode the hashed password.
+//password.bcrypt.logrounds	10	the number of rekeying rounds to use when using bcrypt
+//password.hash.iterations	10000	the number of iterations which will be executed on the hashed password/salt.
+
+//
+
+// change if user expiration exist
+//grails.plugin.springsecurity.failureHandler.exceptionMappings = [
+//        'org.springframework.security.authentication.LockedException':             '/user/accountLocked',
+//        'org.springframework.security.authentication.DisabledException':           '/user/accountDisabled',
+//        'org.springframework.security.authentication.AccountExpiredException':     '/user/accountExpired',
+//        'org.springframework.security.authentication.CredentialsExpiredException': '/user/passwordExpired'
+//]
+
+grails.plugin.springsecurity.password.bcrypt.logrounds = 15
+
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.fitupness.domain.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.fitupness.domain.UserRole'
+
+
+grails.plugin.springsecurity.authority.className = 'com.fitupness.domain.Role'
+
+/** authenticationProcessingFilter */
+grails.plugin.springsecurity.apf.filterProcessesUrl = '/auth/doLogin'
+grails.plugin.springsecurity.apf.usernameParameter = AuthConfig.SPRING_SECURITY_FORM_USERNAME_KEY // 'username'
+grails.plugin.springsecurity.apf.passwordParameter = AuthConfig.SPRING_SECURITY_FORM_PASSWORD_KEY // 'password'
+
+
+// authenticationFailureHandler
+grails.plugin.springsecurity.failureHandler.defaultFailureUrl = '/auth/authfail?q=1'
+
+// successHandler
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/home'
+
+
+/** authenticationEntryPoint */
+grails.plugin.springsecurity.auth.loginFormUrl = '/auth/login'
+
+/** logoutFilter */
+grails.plugin.springsecurity.logout.afterLogoutUrl = '/?logout=1'
+grails.plugin.springsecurity.logout.filterProcessesUrl = '/auth/doLogout'
+
+grails.plugin.springsecurity.adh.errorPage = '/auth/denied?q=1'
+
+// providers
+grails.plugin.springsecurity.providerNames = ['daoAuthenticationProvider']
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+        '/'              : ['permitAll'],
+        '/index'         : ['permitAll'],
+        '/index.gsp'     : ['permitAll'],
+        '/**/js/**'      : ['permitAll'],
+        '/**/css/**'     : ['permitAll'],
+        '/**/images/**'  : ['permitAll'],
+        '/**/favicon.ico': ['permitAll'],
+        '/assets/**'     : ['permitAll'],
+        '/**'            : ['IS_AUTHENTICATED_FULLY']
+]
+
