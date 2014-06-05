@@ -37,6 +37,19 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li <g:if test="${controllerName == 'home'}">class="active"</g:if>><a
                             href="${createLink(controller: 'home')}">Home</a></li>
+
+                    <sec:ifLoggedIn>
+                        <sec:ifAnyGranted roles="ROLE_USER">
+                            <li <g:if test="${controllerName == 'user'}">class="active"</g:if>><a
+                                    href="${createLink(controller: 'user')}">User profile</a></li>
+                        </sec:ifAnyGranted>
+
+                        <sec:ifAnyGranted roles="ROLE_TRAINER">
+                            <li <g:if test="${controllerName == 'trainer'}">class="active"</g:if>><a
+                                    href="${createLink(controller: 'trainer')}">Trainer proile</a></li>
+                        </sec:ifAnyGranted>
+                    </sec:ifLoggedIn>
+
                     <li <g:if test="${controllerName == 'about'}">class="active"</g:if>><a
                             href="${createLink(controller: 'about')}">About</a></li>
                 </ul>
