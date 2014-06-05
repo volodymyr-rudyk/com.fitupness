@@ -48,15 +48,13 @@ grails.project.dependency.resolution = {
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-        // runtime 'mysql:mysql-connector-java:5.1.29'
+        runtime 'mysql:mysql-connector-java:5.1.30'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
 
         compile "org.springframework:spring-orm:$springVersion"
     }
 
     plugins {
-
-        runtime ':twitter-bootstrap:3.1.1.3'
 
         // plugins for the build system only
         build ":tomcat:7.0.53"
@@ -65,11 +63,13 @@ grails.project.dependency.resolution = {
         compile ":scaffolding:2.1.0"
         compile ':cache:1.1.6'
         compile ":asset-pipeline:1.8.7"
+        compile ":spring-security-core:2.0-RC3"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.3" // or ":hibernate:3.6.10.15"
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
+        runtime ':twitter-bootstrap:3.1.1.3'
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.7.4"
