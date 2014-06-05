@@ -14,9 +14,7 @@
 
 <body>
 <div class="container">
-    <a class="btn btn-primary" href="#">fff</a>
-
-    bla
+    <h1 class="title">Home page</h1>
 </div>
 </body>
 </html>

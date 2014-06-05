@@ -14,8 +14,7 @@
 
 <body>
 <div class="container">
-
-    About
+    <h1 class="title">About page</h1>
 </div>
 </body>
 </html>
