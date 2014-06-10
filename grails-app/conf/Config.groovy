@@ -1,7 +1,4 @@
 import com.fitupness.auth.AuthConfig
-import com.fitupness.controller.authentication.AuthController
-import grails.plugin.springsecurity.SpringSecurityUtils
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
@@ -144,8 +141,6 @@ grails.plugin.springsecurity.password.bcrypt.logrounds = 15
 
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.fitupness.domain.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.fitupness.domain.UserRole'
-
-
 grails.plugin.springsecurity.authority.className = 'com.fitupness.domain.Role'
 
 /** authenticationProcessingFilter */
@@ -153,13 +148,11 @@ grails.plugin.springsecurity.apf.filterProcessesUrl = '/auth/doLogin'
 grails.plugin.springsecurity.apf.usernameParameter = AuthConfig.SPRING_SECURITY_FORM_USERNAME_KEY // 'username'
 grails.plugin.springsecurity.apf.passwordParameter = AuthConfig.SPRING_SECURITY_FORM_PASSWORD_KEY // 'password'
 
-
 // authenticationFailureHandler
 grails.plugin.springsecurity.failureHandler.defaultFailureUrl = '/auth/authfail?q=1'
 
 // successHandler
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/home'
-
 
 /** authenticationEntryPoint */
 grails.plugin.springsecurity.auth.loginFormUrl = '/auth/login'
