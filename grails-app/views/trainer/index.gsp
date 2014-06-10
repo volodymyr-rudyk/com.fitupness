@@ -14,7 +14,7 @@
 
 <body>
 Trainer profile
+<a class="btn btn-primary" href="${createLink(controller: 'program')}">My Programs</a>
 
-<a href="${logoutUrl}" class="btn btn-danger">Log out</a>
 </body>
 </html>
