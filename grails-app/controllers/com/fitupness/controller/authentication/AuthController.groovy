@@ -1,7 +1,9 @@
 package com.fitupness.controller.authentication
 
+import com.fitupness.domain.ProfileType
 import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.plugin.springsecurity.annotation.Secured
+import org.springframework.validation.Errors
 
 @Secured('permitAll')
 class AuthController {
@@ -19,8 +21,7 @@ class AuthController {
         println "$controllerName, $actionName"
         if (springSecurityService.isLoggedIn()) {
             redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
-        }
-        else {
+        } else {
             redirect action: 'login', params: params
         }
     }
@@ -40,17 +41,23 @@ class AuthController {
         String view = 'login'
         String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
         println "post url = $postUrl"
-        render view: view, model: [postUrl: postUrl,
+        render view: view, model: [postUrl            : postUrl,
                                    rememberMeParameter: config.rememberMe.parameter]
     }
 
     def signup() {
-
+        [profileTypes: ProfileType.list()]
     }
 
     def doSignup() {
-        authService.signup(params)
-        render view: 'login'
+        def user = authService.signup(params)
+        if (user.hasErrors()) {
+            flash.errors = user.errors
+            redirect action: 'signup'
+            return Errors
+        }
+        flash.succed = 'Signup completed'
+        redirect action: 'login'
     }
 
     def authfail() {
