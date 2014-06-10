@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3533779220">
-    <data-source source="LOCAL" name="H2 - devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE" uuid="b8762acb-f982-4bd1-8ea9-dbaa4542a7cc">
-      <driver-ref>h2.in-memory</driver-ref>
+  <component name="DataSourceManagerImpl" format="xml" hash="2300699643">
+    <data-source source="LOCAL" name="MySQL - fitupness@localhost" uuid="1c07c444-7af7-472a-bca0-aae6e67f435e">
+      <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.h2.Driver</jdbc-driver>
-      <jdbc-url>jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE</jdbc-url>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/fitupness</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfd8dfc5dfc5dfdedfdadfcbdfd9dfd9</user-password>
+      <driver-properties>
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+      </driver-properties>
       <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="fitness dev" uuid="ab2a6ff6-4a38-494e-af32-be35bdd3ebbd">
+      <driver-ref>mysql</driver-ref>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/fitupness</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfd8dfc5dfc5dfdedfdadfcbdfd9dfd9</user-password>
+      <libraries>
+        <library>
+          <url>file://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>
