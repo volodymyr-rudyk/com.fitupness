@@ -6,9 +6,15 @@ class Profile {
     String lastname
     String phone
 
-    static belongsTo = [User]
-    /* ..... */
+    ProfileType profileType
+    Address address
+    Body body
+
+    static belongsTo = User
 
     static constraints = {
+//        phone nullable: true
+        address nullable: true
+        body nullable: true
     }
 }
