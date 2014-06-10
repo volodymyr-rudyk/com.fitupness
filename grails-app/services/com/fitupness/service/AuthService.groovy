@@ -1,25 +1,52 @@
 package com.fitupness.service
 
-import com.fitupness.domain.Profile
-import com.fitupness.domain.Role
-import com.fitupness.domain.User
-import com.fitupness.domain.UserRole
+import com.fitupness.domain.*
 import grails.transaction.Transactional
 
 @Transactional
 class AuthService {
 
     def signup(params) {
+        println "type =  ${params.type}"
+        def profileType = ProfileType.get(params.type)
+        if (!profileType) {
+            profileType = ProfileType.where {
+                type == 'sportsman'
+            }.get()
+        }
+
         def user = new User(params)
         def profile = new Profile(params)
-        if(user.validate() && profile.validate()){
-            user.profile = profile
+        profile.profileType = profileType
+        user.profile = profile
+        if (user.validate() /*&& profile.validate()*/) {
             user.save(flush: true)
-            def role = Role.findByAuthority("ROLE_USER")
-            UserRole.create(user, role, true)
+
+            def rating = new Rating(points: 0)
+            rating.save(flush: true)
+
+            if (profileType.type == 'trainer') {
+                def trainer = new Trainer(profile: user.profile)
+                trainer.rating = rating
+                trainer.save(flush: true)
+                def roleTrainer = Role.findByAuthority("ROLE_TRAINER")
+                UserRole.create(user, roleTrainer, true)
+            } else { // sportsman
+                def sportsman = new Sportsman(profile: user.profile)
+                sportsman.rating = rating
+                sportsman.save(flush: true)
+                def roleSportsman = Role.findByAuthority("ROLE_SPORTSMAN")
+                UserRole.create(user, roleSportsman, true)
+            }
             return user
-        }else {
-            throw new RuntimeException('Error signup...')
+        } else {
+            if (user.hasErrors()) {
+                user.errors.each { error ->
+                    println error
+                }
+            }
+            //throw new RuntimeException('Error signup...')
         }
+        return user
     }
 }
