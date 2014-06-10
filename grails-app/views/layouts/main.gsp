@@ -38,8 +38,11 @@
                     <li <g:if test="${controllerName == 'home'}">class="active"</g:if>><a
                             href="${createLink(controller: 'home')}">Home</a></li>
 
+                    <li <g:if test="${controllerName == 'about'}">class="active"</g:if>><a
+                            href="${createLink(controller: 'about')}">About</a></li>
+
                     <sec:ifLoggedIn>
-                        <sec:ifAnyGranted roles="ROLE_USER">
+                        <sec:ifAnyGranted roles="ROLE_SPORTSMAN">
                             <li <g:if test="${controllerName == 'user'}">class="active"</g:if>><a
                                     href="${createLink(controller: 'user')}">User profile</a></li>
                         </sec:ifAnyGranted>
@@ -48,10 +51,9 @@
                             <li <g:if test="${controllerName == 'trainer'}">class="active"</g:if>><a
                                     href="${createLink(controller: 'trainer')}">Trainer proile</a></li>
                         </sec:ifAnyGranted>
-                    </sec:ifLoggedIn>
 
-                    <li <g:if test="${controllerName == 'about'}">class="active"</g:if>><a
-                            href="${createLink(controller: 'about')}">About</a></li>
+                        <li><a href="${createLink(controller: 'auth', action: 'doLogout')}">Log out</a></li>
+                    </sec:ifLoggedIn>
                 </ul>
 
             </div>
@@ -59,15 +61,16 @@
     </div>
 </div>
 
-<g:layoutBody/>
-
-%{--footer--}%
-<div class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <p class="navbar-text pull-left">Copyright</p>
-        <a class="navbar-btn btn btn-danger pull-right">Subscribe</a>
-    </div>
+<div class="container">
+    <g:layoutBody/>
 </div>
+%{--footer--}%
+%{--<div class="navbar navbar-default navbar-fixed-bottom">--}%
+%{--<div class="container">--}%
+%{--<p class="navbar-text pull-left">Copyright</p>--}%
+%{--<a class="navbar-btn btn btn-danger pull-right">Subscribe</a>--}%
+%{--</div>--}%
+%{--</div>--}%
 
 </body>
 </html>
