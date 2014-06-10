@@ -1,5 +1,6 @@
 package com.fitupness
 
+import com.fitupness.domain.Profile
 import grails.plugin.springsecurity.userdetails.GrailsUser
 import org.springframework.security.core.GrantedAuthority
 
@@ -8,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority
  */
 class MyUserDetails extends GrailsUser {
 
-    final String fullName
+    Profile profile
 
     /**
      * Constructor.
@@ -25,8 +26,9 @@ class MyUserDetails extends GrailsUser {
      *        presented the correct username and password and the user is enabled. Not null.
      * @param id the id of the domain class instance used to populate this
      */
-    MyUserDetails(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<GrantedAuthority> authorities, Object id, String fullName) {
+    MyUserDetails(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<GrantedAuthority> authorities, Object id, Profile profile) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities, id)
-        fullName = fullName
+
+        profile = profile
     }
 }

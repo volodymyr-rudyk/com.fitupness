@@ -24,7 +24,7 @@ class MyUserDetailsService implements GrailsUserDetailsService {
 
             def authorities = user.authorities.collect { new GrantedAuthorityImpl(it.authority) }
 
-            return new MyUserDetails(user.username, user.password, user.enabled, !user.accountExpired, !user.passwordExpired, !user.accountLocked, authorities ?: NO_ROLES, user.id,user.username)
+            return new MyUserDetails(user.username, user.password, user.enabled, !user.accountExpired, !user.passwordExpired, !user.accountLocked, authorities ?: NO_ROLES, user.id, user.profile)
         }
     }
 }
