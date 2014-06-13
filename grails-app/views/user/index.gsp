@@ -21,32 +21,29 @@
             <a href="${createLink(controller: 'user')}" class="list-group-item
             <g:if test="${actionName == 'index'}">active</g:if>">Profile</a>
             <a href="${createLink(action: 'index2')}" class="list-group-item">Programs2</a>
-            <a href="http://google.com" class="list-group-item">asas</a>
             <a href="${createLink(controller: 'program')}" class="list-group-item">PROGRAM</a>
-            <li class="list-group-item">item<span class="glyphicon glyphicon-chevron-right"></span></li>
         </ul>
-        <ul class="list-group">
-            <a href="#" class="list-group-item">asas</a>
-            <a href="#" class="list-group-item">asas</a>
-            <a href="#" class="list-group-item">asas</a>
-            <a href="#" class="list-group-item">asas</a>
-        </ul>
-
-        <ul class="list-group">
-            <li class="list-group-item">item<span class="glyphicon glyphicon-certificate pull-right"></span></li>
-        </ul>
-        .col-md-8
 
     </div>
 
-    <div class="col-md-8">.col-md-4</div>
+    <div class="col-md-8">
+        <h2>Profile data</h2>
+
+        <div>firstname : ${sportsman.profile.firstname}</div>
+
+        <div>lastname : ${sportsman.profile.lastname}</div>
+
+        <div>address : ${sportsman.profile.address?.country?.country},
+            ${sportsman.profile.address?.city?.city}</div>
+
+        <div>body weight : ${sportsman.profile.body?.weight}</div>
+
+        <div>profile type : ${sportsman.profile.profileType?.type}</div>
+    </div>
 </div>
 
 
-User profile
-%{--${profile?.firstname}--}%
-name =
-${sportsman?.profile?.firstname},
+
 trainer =
 
 <br>${sportsman?.trainer?.profile?.firstname}
