@@ -7,10 +7,13 @@ class SportProgram {
     int count
     int weight
 
-    Profile owner
+    Profile profile
     SportProgramType sportProgramType
 
-    static hasMany = [groups: SpGroup]
+    static hasMany = [groups: SpGroup/*,
+                      profiles: Profile*/]
+
+    static belongsTo = [Profile]
 
     static constraints = {
         sportProgramType nullable: true

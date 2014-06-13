@@ -10,6 +10,8 @@ class Profile {
     Address address
     Body body
 
+    static hasMany = [sportPrograms: SportProgram]
+
     static belongsTo = User
 
     static constraints = {
