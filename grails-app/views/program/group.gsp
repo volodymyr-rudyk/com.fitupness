@@ -43,15 +43,20 @@
                 <tr class="info">
                     <th>Name</th>
                     <th>Owner</th>
-                    <th>Count</th>
+                    <th>SportProgramsCount</th>
                     <th>Weight</th>
                 </tr>
                 <g:each in="${groups}" var="group">
                     <tr>
                         <td>${group.name}</td>
                         <td>${group.profile.firstname}</td>
-                        <td>{program.count}</td>
-                        <td>{program.weight}</td>
+                        <td>${group.sportPrograms.size()}</td>
+                        <td>
+                            <g:form controller="program" action="deleteGroup">
+                                <g:hiddenField name="id" value="${group.id}"/>
+                                <g:submitButton class="btn btn-danger" name="Delete group"/>
+                            </g:form>
+                        </td>
                     </tr>
                 </g:each>
             </table>
@@ -65,7 +70,5 @@
     </div>
 
 </div>
-
-count = {own_programs.count()}
 </body>
 </html>
