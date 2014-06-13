@@ -66,18 +66,18 @@
                         <td>${program.repetition}</td>
                         <td>${program.count}</td>
                         <td>${program.weight}</td>
-                        <td>${program.owner.firstname}</td>
+                        <td>${program.profile.firstname}</td>
                         <g:if test="${groups.size() > 0}">
-                            <td>%{--<select class="form-control">--}%
-                            %{--<g:each in="${groups}" var="group">
-                                <option value="${group.id}">${group.name}</option>
-                            </g:each>
-                        </select>--}%
-
-                            ==${program.groups[0]?.name}
+                            <td>
+                                ${program.groups[0]?.name}
                             </td>
                         </g:if>
-                        <td><g:submitButton class="btn btn-primary" name="submit"/></td>
+                        <td>
+                            <g:form controller="program" action="delete">
+                                <g:hiddenField name="id" value="${program.id}"/>
+                                <g:submitButton class="btn btn-danger" name="Delete"/>
+                            </g:form>
+                        </td>
 
                     </tr>
                 </g:each>
