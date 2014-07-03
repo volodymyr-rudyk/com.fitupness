@@ -1,6 +1,6 @@
 dataSource {
-    pooled = true
-    jmxExport = true
+//    pooled = true
+//    jmxExport = true
     driverClassName = "com.mysql.jdbc.Driver"
     dialect = "org.hibernate.dialect.MySQLDialect"
 }
@@ -21,23 +21,35 @@ environments {
             password = "rootpass"
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost:3306/fitupness"
+//            url = "jdbc:mysql://localhost:3306/fitupness_dev"
         }
     }
     test {
+
         dataSource {
-            username = "fitness"
-            password = "ShKEZLLthZZBSdzX"
-            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost:3306/fitness"
+            logSql = true
+            username = "root"
+            password = "rootpass"
+            dbCreate = "create" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:mysql://localhost:3306/fitupness_dev"
         }
+
+//        dataSource {
+//            username = "fitness"
+//            password = "ShKEZLLthZZBSdzX"
+//            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+//            url = "jdbc:mysql://127.0.0.1:3306/fitness"
+//        }
+
     }
 
     production {
         dataSource {
-            username = ""
-            password = ""
+            username = "fitness"
+            password = "ShKEZLLthZZBSdzX"
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = ""
+            url = "jdbc:mysql://127.0.0.1:3306/fitness"
+
 
             properties {
                 // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
