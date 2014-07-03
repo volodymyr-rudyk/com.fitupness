@@ -5,6 +5,6 @@ class City {
     String city
 
     static constraints = {
-        city nullable: false, blank: false
+        city nullable: false, blank: false, unique: true
     }
 }
