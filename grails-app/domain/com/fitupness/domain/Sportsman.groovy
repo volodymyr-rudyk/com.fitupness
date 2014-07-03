@@ -3,8 +3,10 @@ package com.fitupness.domain
 class Sportsman {
 
     Profile profile
-    Trainer trainer
+//    Trainer trainer
     Rating rating
+
+    static belongsTo = [trainer: Trainer]
 
     static constraints = {
         trainer nullable: true
