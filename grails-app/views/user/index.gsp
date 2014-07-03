@@ -20,8 +20,8 @@
         <ul class="list-group">
             <a href="${createLink(controller: 'user')}" class="list-group-item
             <g:if test="${actionName == 'index'}">active</g:if>">Profile</a>
-            <a href="${createLink(action: 'index2')}" class="list-group-item">Programs2</a>
             <a href="${createLink(controller: 'program')}" class="list-group-item">PROGRAM</a>
+            <a href="${createLink(action: 'trainerList')}" class="list-group-item">TrainerList</a>
         </ul>
 
     </div>
@@ -39,19 +39,13 @@
         <div>body weight : ${sportsman.profile.body?.weight}</div>
 
         <div>profile type : ${sportsman.profile.profileType?.type}</div>
+
+        <div>trainer : ${sportsman?.trainer?.profile?.firstname}</div>
+
+        <div>rating : ${sportsman?.rating?.points}</div>
+
     </div>
 </div>
 
-
-
-trainer =
-
-<br>${sportsman?.trainer?.profile?.firstname}
-
-<br>
-rating = ${sportsman?.rating?.points}<br>
-profiletype = ${sportsman?.profile?.profileType?.type}
-
-<a class="btn btn-primary" href="${createLink(controller: 'program')}">My Programs</a>
 </body>
 </html>
