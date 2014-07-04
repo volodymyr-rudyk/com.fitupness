@@ -1,9 +1,7 @@
 package com.fitupness.controller
-
 import com.fitupness.domain.SpGroup
 
 class ProgramController {
-
 
     def profileService
 
@@ -43,7 +41,11 @@ class ProgramController {
         redirect action: 'groups'
     }
 
-    def groups() {
-        render view: 'group', model: [groups: sportProgramService.listGroup()]
+    def groups(Long id) {
+        if (id) {
+            render view: 'group', model: [group: sportProgramService.getGroup(id)]
+            return
+        }
+        render view: 'groups', model: [groups: sportProgramService.listGroup()]
     }
 }

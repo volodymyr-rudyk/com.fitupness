@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: light
-  Date: 6/8/2014
-  Time: 3:02 PM
+  Date: 7/3/2014
+  Time: 11:14 PM
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -27,46 +27,39 @@
     </div>
 
     <div class="col-md-9">
-        <form class="form-inline" style="margin-bottom: 15px" role="form" action="${createLink(action: 'createGroup')}">
-            <g:textField class="form-control" type="text" name="name" placeholder="Name"/>
-            <g:submitButton class="btn btn-primary form-control" name="submit"/>
-        </form>
-
-
         <div class="panel panel-default">
 
-            <div class="panel-heading">
-                Program Groups
-            </div>
+            <g:if test="${group}">
+                <div class="panel-heading">
+                    Program Group <strong>${group.name}</strong>
+                </div>
 
-            <table class="table table-hover">
-                <tr class="info">
-                    <th>Name</th>
-                    <th>Owner</th>
-                    <th>SportProgramsCount</th>
-                    <th>Weight</th>
-                </tr>
-                <g:each in="${groups}" var="group">
-                    <tr>
-                        <td>${group.name}</td>
-                        <td>${group.profile.firstname}</td>
-                        <td>${group.sportPrograms.size()}</td>
-                        <td>
-                            <g:form controller="program" action="deleteGroup">
-                                <g:hiddenField name="id" value="${group.id}"/>
-                                <g:submitButton class="btn btn-danger" name="Delete group"/>
-                            </g:form>
-                        </td>
+                <table class="table table-hover">
+                    <tr class="info">
+                        <th>Name</th>
+                        <th>Owner</th>
+                        <th>Count</th>
+                        <th>repetition</th>
+                        <th>weight</th>
                     </tr>
-                </g:each>
-            </table>
+                    <g:each in="${group.sportPrograms}" var="sportProgram">
+                        <tr>
+                            <td>${sportProgram.name}</td>
+                            <td>${sportProgram.profile.firstname}</td>
+                            <td>${sportProgram.count}</td>
+                            <td>${sportProgram.repetition}</td>
+                            <td>${sportProgram.weight}</td>
+                        </tr>
+                    </g:each>
+                </table>
+            </g:if>
+            <g:else>
+                <div class="panel-heading">
+                    Data not found
+                </div>
+            </g:else>
 
         </div>
-    </div>
-
-    <div class="row">
-        %{--<g:paginate controller="program"--}%
-        %{--action="index" total="${count}" />--}%
     </div>
 
 </div>
