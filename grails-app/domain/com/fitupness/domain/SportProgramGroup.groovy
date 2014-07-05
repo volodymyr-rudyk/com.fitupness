@@ -1,10 +1,10 @@
 package com.fitupness.domain
 
-class SpGroup {
+class SportProgramGroup {
 
     String name
 
-    Profile profile
+    Trainer trainer
 
     static hasMany = [sportPrograms: SportProgram]
     static belongsTo = [SportProgram]

@@ -1,6 +1,6 @@
 package com.fitupness.domain
 
-class ProgramStatus {
+class SportProgramStatus {
 
     String status
 

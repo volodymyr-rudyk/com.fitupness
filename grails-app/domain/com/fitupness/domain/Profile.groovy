@@ -9,8 +9,7 @@ class Profile {
     ProfileType profileType
     Address address
     Body body
-
-    static hasMany = [sportPrograms: SportProgram]
+    Rating rating
 
     static belongsTo = User
 

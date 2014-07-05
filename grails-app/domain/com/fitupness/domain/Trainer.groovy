@@ -3,9 +3,11 @@ package com.fitupness.domain
 class Trainer {
 
     Profile profile
-    Rating rating
 
-    static hasMany = [sportsmans: Sportsman]
+    static hasMany = [sportsmans           : Sportsman,
+                      sportPrograms        : SportProgram,
+                      sportProgramGroups   : SportProgramGroup,
+                      sportProgramTemplates: SportProgramTemplate]
 
     static constraints = {
     }
