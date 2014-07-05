@@ -48,6 +48,9 @@
                         <td>${sportsman.profile.firstname}</td>
                         <td>${sportsman.profile.lastname}</td>
                         <td>${sportsman.profile.phone}</td>
+                        <td>
+                            <link:profileLink id="${sportsman.profile.id}">View</link:profileLink>
+                        </td>
 
                     </tr>
                 </g:each>
