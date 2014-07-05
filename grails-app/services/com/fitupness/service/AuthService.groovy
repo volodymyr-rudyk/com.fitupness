@@ -17,23 +17,22 @@ class AuthService {
 
         def user = new User(params)
         def profile = new Profile(params)
+        profile.save(flush: true)
+        profile.rating = new Rating(points: 0)
+        profile.rating.validate()
         profile.profileType = profileType
+        profile.save(flush: true)
         user.profile = profile
         if (user.validate() /*&& profile.validate()*/) {
             user.save(flush: true)
 
-            def rating = new Rating(points: 0)
-            rating.save(flush: true)
-
             if (profileType.type == 'trainer') {
                 def trainer = new Trainer(profile: user.profile)
-                trainer.rating = rating
                 trainer.save(flush: true)
                 def roleTrainer = Role.findByAuthority("ROLE_TRAINER")
                 UserRole.create(user, roleTrainer, true)
             } else { // sportsman
                 def sportsman = new Sportsman(profile: user.profile)
-                sportsman.rating = rating
                 sportsman.save(flush: true)
                 def roleSportsman = Role.findByAuthority("ROLE_SPORTSMAN")
                 UserRole.create(user, roleSportsman, true)

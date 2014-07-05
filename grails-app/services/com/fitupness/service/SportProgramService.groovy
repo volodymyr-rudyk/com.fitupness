@@ -1,7 +1,7 @@
 package com.fitupness.service
 
-import com.fitupness.domain.SpGroup
 import com.fitupness.domain.SportProgram
+import com.fitupness.domain.SportProgramGroup
 import grails.transaction.Transactional
 
 @Transactional
@@ -10,52 +10,56 @@ class SportProgramService {
     def profileService
 
     def addProgram(params) {
-        def profile = profileService.getProfile()
+        def trainer = profileService.trainer
         def sportProgram = new SportProgram(params)
-        sportProgram.profile = profile
-        sportProgram.save(flush: true)
+        trainer.addToSportPrograms(sportProgram)
 
-        def spGroup = SpGroup.get(params.group)
-        if (spGroup) {
-            sportProgram.addToGroups(spGroup)
+        def sportProgramGroup = SportProgramGroup.get(params.group)
+        if (sportProgramGroup) {
+            sportProgramGroup.addToSportPrograms(sportProgram)
         }
-        profile.addToSportPrograms(sportProgram)
-        sportProgram.save(flush: true)
     }
 
     def deleteProgram(id) {
         def sportProgram = SportProgram.get(id)
         if (sportProgram) {
-            def profile = profileService.getProfile()
-            if (profile.sportPrograms.contains(sportProgram)) {
+            def trainer = profileService.trainer
+            if (trainer.sportPrograms.contains(sportProgram)) {
                 sportProgram.groups.clear()
-                profile.sportPrograms.remove(sportProgram)
+                trainer.sportPrograms.remove(sportProgram)
                 sportProgram.delete(flush: true)
             }
         }
     }
 
     def addGroup(String name) {
-        def spGroup = new SpGroup(name: name, profile: profileService.profile)
-        spGroup.save()
-        spGroup
+        def sportProgramGroup = new SportProgramGroup(name: name, trainer: profileService.trainer)
+        sportProgramGroup.save()
+        sportProgramGroup
     }
 
     def deleteGroup(id) {
-        def spGroup = SpGroup.get(id)
-        if (spGroup.profile == profileService.profile) {
-            println spGroup.sportPrograms*.name
-            spGroup.sportPrograms.each { sp ->
-                sp.delete(flush: true)
+        def sportProgramGroup = SportProgramGroup.get(id)
+        if (sportProgramGroup) {
+            if (sportProgramGroup.trainer == profileService.trainer) {
+                println sportProgramGroup.sportPrograms*.name
+                sportProgramGroup.sportPrograms.each { sp ->
+                    sp.delete(flush: true)
+                }
+                sportProgramGroup.delete(flush: true)
             }
-            spGroup.delete(flush: true)
         }
     }
 
     def listGroup() {
-        def groups = SpGroup.where {
-            profile == profileService.profile
+        def groups = SportProgramGroup.where {
+            trainer == profileService.trainer
         }.list()
+        groups
+    }
+
+    def getGroup(id) {
+        def groups = SportProgramGroup.get(id)
         groups
     }
 }

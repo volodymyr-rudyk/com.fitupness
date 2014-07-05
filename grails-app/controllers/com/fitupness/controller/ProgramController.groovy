@@ -1,5 +1,4 @@
 package com.fitupness.controller
-import com.fitupness.domain.SpGroup
 
 class ProgramController {
 
@@ -9,11 +8,8 @@ class ProgramController {
 
     def index() {
 
-        def groups = SpGroup.where {
-            profile == profileService.profile
-        }
-
-        [programs: profileService.profile.sportPrograms, groups: groups]
+        [programs: profileService.trainer.sportPrograms,
+         groups  : profileService.trainer.sportProgramGroups]
     }
 
     def create() {
