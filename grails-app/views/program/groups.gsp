@@ -20,12 +20,7 @@
 
 <div class="row">
     <div class="col-md-3">
-        <ul class="list-group">
-            <a href="${createLink(controller: 'program')}" class="list-group-item
-            <g:if test="${actionName == 'index'}">active</g:if>">Programs</a>
-            <a href="${createLink(controller: 'program', action: 'groups')}" class="list-group-item
-            <g:if test="${actionName == 'groups'}">active</g:if>">Groups</a>
-        </ul>
+        <g:include view="program/program_menu.gsp"/>
     </div>
 
     <div class="col-md-9">
@@ -44,14 +39,12 @@
             <table class="table table-hover">
                 <tr class="info">
                     <th>Name</th>
-                    <th>Owner</th>
                     <th>SportProgramsCount</th>
                     <th>Weight</th>
                 </tr>
                 <g:each in="${groups}" var="group">
                     <tr>
                         <td>${group.name}</td>
-                        <td>${group.profile.firstname}</td>
                         <td>${group.sportPrograms.size()}</td>
 
                         <td>

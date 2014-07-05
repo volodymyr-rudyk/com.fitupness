@@ -19,13 +19,7 @@
 
 <div class="row">
     <div class="col-md-3">
-        <ul class="list-group">
-            <ul class="list-group">
-                <a href="${createLink(controller: 'program')}" class="list-group-item
-            <g:if test="${actionName == 'index'}">active</g:if>">Programs</a>
-                <a href="${createLink(controller: 'program', action: 'groups')}" class="list-group-item">Groups</a>
-            </ul>
-        </ul>
+        <g:include view="program/program_menu.gsp"/>
     </div>
 
     <div class="col-md-9">
@@ -56,7 +50,7 @@
                     <th>Repetition</th>
                     <th>Count</th>
                     <th>Weight</th>
-                    <th>Owner Name</th>
+                    %{--<th>Owner Name</th>--}%
                     <th>Group Name</th>
                     <th>btn</th>
                 </tr>
@@ -66,7 +60,7 @@
                         <td>${program.repetition}</td>
                         <td>${program.count}</td>
                         <td>${program.weight}</td>
-                        <td>${program.profile.firstname}</td>
+                    %{--<td>${program.trainer.profile.firstname}</td>--}%
                         <g:if test="${groups.size() > 0}">
                             <td>
                                 ${program.groups[0]?.name}

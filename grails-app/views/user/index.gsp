@@ -16,14 +16,7 @@
 
 <div class="row">
     <div class="col-md-3">
-
-        <ul class="list-group">
-            <a href="${createLink(controller: 'user')}" class="list-group-item
-            <g:if test="${actionName == 'index'}">active</g:if>">Profile</a>
-            <a href="${createLink(controller: 'program')}" class="list-group-item">PROGRAM</a>
-            <a href="${createLink(action: 'trainerList')}" class="list-group-item">TrainerList</a>
-        </ul>
-
+        <g:include view="user/user_menu.gsp"/>
     </div>
 
     <div class="col-md-8">
@@ -42,7 +35,7 @@
 
         <div>trainer : ${sportsman?.trainer?.profile?.firstname}</div>
 
-        <div>rating : ${sportsman?.rating?.points}</div>
+        <div>rating : ${sportsman?.profile.rating?.points}</div>
 
     </div>
 </div>
