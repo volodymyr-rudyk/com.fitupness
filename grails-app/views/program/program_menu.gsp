@@ -13,5 +13,7 @@
             <g:if test="${actionName == 'groups'}">active</g:if>">Groups</a>
     <a href="${createLink(controller: 'program')}" class="list-group-item
             <g:if test="${actionName == 'index'}">active</g:if>">Programs</a>
+    <a href="${createLink(controller: 'template')}" class="list-group-item
+            <g:if test="${controllerName == 'template'}">active</g:if>">Templates</a>
 
 </ul>
