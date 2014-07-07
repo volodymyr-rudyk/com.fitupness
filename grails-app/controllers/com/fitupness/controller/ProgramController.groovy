@@ -9,7 +9,8 @@ class ProgramController {
     def index() {
 
         [programs: profileService.trainer.sportPrograms,
-         groups  : profileService.trainer.sportProgramGroups]
+         groups   : profileService.trainer.sportProgramGroups,
+         templates: profileService.trainer.sportProgramTemplates]
     }
 
     def create() {
