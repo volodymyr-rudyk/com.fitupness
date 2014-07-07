@@ -23,12 +23,22 @@
     </div>
 
     <div class="col-md-9">
+
+        <g:select noSelection="['': '- Choose template to take data from -']" name="group" from="${templates}"
+                  optionKey="id" optionValue="name" class="form-control"
+                  onchange="${remoteFunction(controller: 'template',
+                          action: 'ajaxGet',
+                          params: '\'id=\' + this.value',
+                          onSuccess: 'fillProgram(data)'
+                  )}"/>
+
+
         <form class="form-inline" method="post" style="margin-bottom: 15px" role="form"
               action="${createLink(action: 'create')}">
-            <g:textField class="form-control" type="text" name="name" placeholder="Name"/>
-            <g:textField class="form-control" type="text" name="repetition" placeholder="repetition"/>
-            <g:textField class="form-control" type="text" name="count" placeholder="count"/>
-            <g:textField class="form-control" type="text" name="weight" placeholder="weight"/>
+            <g:textField class="form-control" type="text" id="name" name="name" placeholder="Name"/>
+            <g:textField class="form-control" type="text" id="repetition" name="repetition" placeholder="repetition"/>
+            <g:textField class="form-control" type="text" id="count" name="count" placeholder="count"/>
+            <g:textField class="form-control" type="text" id="weight" name="weight" placeholder="weight"/>
             <g:select name="group" from="${groups}" optionKey="id" optionValue="name" class="form-control"/>
             %{--<g:each in="${groups}" var="group">
                 <option value="${group.id}">${group.name}</option>
@@ -43,7 +53,6 @@
             <div class="panel-heading">
                 Programs
             </div>
-
             <table class="table table-hover">
                 <tr class="info">
                     <th>Name</th>
@@ -87,5 +96,14 @@
 
 </div>
 
+<g:javascript>
+    function fillProgram(templateDate) {
+        var template = templateDate.template
+        $('#name').val(template.name)
+        $('#repetition').val(template.repetition)
+        $('#count').val(template.count)
+        $('#weight').val(template.weight)
+    }
+</g:javascript>
 </body>
 </html>
