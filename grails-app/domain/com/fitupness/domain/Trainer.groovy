@@ -4,10 +4,11 @@ class Trainer {
 
     Profile profile
 
-    static hasMany = [sportsmans           : Sportsman,
-                      sportPrograms        : SportProgram,
-                      sportProgramGroups   : SportProgramGroup,
-                      sportProgramTemplates: SportProgramTemplate]
+    static hasMany = [sportsmans                : Sportsman,
+                      sportPrograms             : SportProgram,
+                      sportProgramGroups        : SportProgramGroup,
+                      sportProgramTemplates     : SportProgramTemplate,
+                      sportProgramTemplateGroups: SportProgramTemplateGroup]
 
     static constraints = {
     }
