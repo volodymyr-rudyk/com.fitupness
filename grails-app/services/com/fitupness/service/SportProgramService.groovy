@@ -25,7 +25,7 @@ class SportProgramService {
         if (sportProgram) {
             def trainer = profileService.trainer
             if (trainer.sportPrograms.contains(sportProgram)) {
-                sportProgram.groups.clear()
+//                sportProgram.groups.clear()
                 trainer.sportPrograms.remove(sportProgram)
                 sportProgram.delete(flush: true)
             }
@@ -43,9 +43,7 @@ class SportProgramService {
         if (sportProgramGroup) {
             if (sportProgramGroup.trainer == profileService.trainer) {
                 println sportProgramGroup.sportPrograms*.name
-                sportProgramGroup.sportPrograms.each { sp ->
-                    sp.delete(flush: true)
-                }
+                sportProgramGroup.sportPrograms*.sportProgramGroup = null
                 sportProgramGroup.delete(flush: true)
             }
         }
