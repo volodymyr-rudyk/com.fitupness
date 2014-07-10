@@ -36,7 +36,7 @@
                 Program Groups
             </div>
 
-            <table class="table table-hover">
+            <table class="table">
                 <tr class="info">
                     <th>Name</th>
                     <th>SportProgramsCount</th>
