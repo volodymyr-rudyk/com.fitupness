@@ -7,7 +7,6 @@ class SportProgramGroup {
     Trainer trainer
 
     static hasMany = [sportPrograms: SportProgram]
-    static belongsTo = [SportProgram]
     static constraints = {
     }
 }
