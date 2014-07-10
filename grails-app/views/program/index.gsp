@@ -39,7 +39,8 @@
             <g:textField class="form-control" type="text" id="repetition" name="repetition" placeholder="repetition"/>
             <g:textField class="form-control" type="text" id="count" name="count" placeholder="count"/>
             <g:textField class="form-control" type="text" id="weight" name="weight" placeholder="weight"/>
-            <g:select name="group" from="${groups}" optionKey="id" optionValue="name" class="form-control"/>
+            <g:select name="group" noSelection="${['-1': 'Select Group...']}" from="${groups}" optionKey="id"
+                      optionValue="name" class="form-control"/>
             %{--<g:each in="${groups}" var="group">
                 <option value="${group.id}">${group.name}</option>
             </g:each>
@@ -59,9 +60,9 @@
                     <th>Repetition</th>
                     <th>Count</th>
                     <th>Weight</th>
-                    %{--<th>Owner Name</th>--}%
-                    <th>Group Name</th>
-                    <th>btn</th>
+                    <th>Group</th>
+                    <th>Runner</th>
+                    <th>Status</th>
                 </tr>
                 <g:each in="${programs}" var="program">
                     <tr>
@@ -69,12 +70,8 @@
                         <td>${program.repetition}</td>
                         <td>${program.count}</td>
                         <td>${program.weight}</td>
-                    %{--<td>${program.trainer.profile.firstname}</td>--}%
-                        <g:if test="${groups.size() > 0}">
-                            <td>
-                                ${program.groups[0]?.name}
-                            </td>
-                        </g:if>
+                        <td>${program.sportProgramGroup?.name}</td>
+                        <td>${program.runner?.profile?.firstname}</td>
                         <td>
                             <g:form controller="program" action="delete">
                                 <g:hiddenField name="id" value="${program.id}"/>

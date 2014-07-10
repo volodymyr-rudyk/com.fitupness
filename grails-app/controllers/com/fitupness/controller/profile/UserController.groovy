@@ -1,5 +1,7 @@
 package com.fitupness.controller.profile
 
+import com.fitupness.domain.SportProgram
+import com.fitupness.domain.SportProgramStatus
 import com.fitupness.domain.Trainer
 import grails.plugin.springsecurity.annotation.Secured
 
@@ -28,6 +30,18 @@ class UserController {
     def addClaim() {
         claimService.create(params.to)
         redirect action: 'index'
+    }
+
+    def programs() {
+        def trainer = profileService.sportsman.trainer
+        def sportPrograms = SportProgram.findAllByTrainerAndRunner(trainer, profileService.sportsman)
+        [sportPrograms: sportPrograms]
+    }
+
+    def history() {
+        def trainer = profileService.sportsman.trainer
+        def sportPrograms = SportProgram.findAllByTrainerAndRunnerAndStatus(trainer, profileService.sportsman, SportProgramStatus.get(2))
+        [sportPrograms: sportPrograms]
     }
 
 }
