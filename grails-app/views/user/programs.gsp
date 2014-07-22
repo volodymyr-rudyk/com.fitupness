@@ -45,7 +45,7 @@
                         <td>
                             <link:profileLink id="${sportProgram.trainer.profile.id}">View</link:profileLink>
                         </td>
-                        <td><div id="status_${sportProgram.id}">${sportProgram.status.status}</div></td>
+                        <td><div id="status_${sportProgram.id}">${sportProgram.status?.status}</div></td>
                         <td>
                             <div class="btn-group">
 
