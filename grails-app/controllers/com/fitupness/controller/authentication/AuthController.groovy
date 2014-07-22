@@ -46,7 +46,7 @@ class AuthController {
     }
 
     def signup() {
-        [profileTypes: ProfileType.list()]
+        render view: 'signup', model: [profileTypes: ProfileType.list()]
     }
 
     def doSignup() {
