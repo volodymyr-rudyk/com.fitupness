@@ -66,12 +66,12 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
                 <g:form controller="program" action="send">
                     <g:hiddenField name="idSportsman" id="idSportsman"/>
-                    <select id="spList" name="idProgram" class="form-control"/>
+                    <select id="spList" name="idProgram" class="form-control" style="margin-bottom: 8px"></select>
 
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <g:submitButton class="btn btn-primary" name="Send"/>
                 </g:form>
 
