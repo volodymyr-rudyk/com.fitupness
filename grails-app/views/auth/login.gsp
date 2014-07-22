@@ -38,5 +38,14 @@
     <g:submitButton class="btn btn-primary btn-lg btn-block" name="submit" value="Submit"/><br>
     <a class="btn btn-link " href="<g:createLink action="signup"/>">signup</a>
 </g:form>
+
+<div>
+    user   :[login=user@gmail.com, pass:123456]
+</div>
+
+<div>
+    trainer:[login=trainer@gmail.com, pass:123456]
+</div>
+
 </body>
 </html>
