@@ -4,6 +4,8 @@ class Trainer {
 
     Profile profile
 
+    SportClub sportClub
+
     static hasMany = [sportsmans                : Sportsman,
                       sportPrograms             : SportProgram,
                       sportProgramGroups        : SportProgramGroup,
@@ -11,5 +13,6 @@ class Trainer {
                       sportProgramTemplateGroups: SportProgramTemplateGroup]
 
     static constraints = {
+        sportClub nullable: true
     }
 }
