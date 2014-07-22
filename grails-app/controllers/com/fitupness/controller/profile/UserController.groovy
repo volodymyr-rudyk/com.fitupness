@@ -3,6 +3,7 @@ package com.fitupness.controller.profile
 import com.fitupness.domain.SportProgram
 import com.fitupness.domain.SportProgramStatus
 import com.fitupness.domain.Trainer
+import com.fitupness.service.ProgramStatusService
 import grails.plugin.springsecurity.annotation.Secured
 
 @Secured(['ROLE_SPORTSMAN'])
@@ -35,7 +36,10 @@ class UserController {
     def programs() {
         def trainer = profileService.sportsman.trainer
         def sportPrograms = SportProgram.findAllByTrainerAndRunner(trainer, profileService.sportsman)
-        [sportPrograms: sportPrograms]
+        def sportProgramsToDo = sportPrograms.findAll {
+            sp -> sp.status?.status != ProgramStatusService.DONE
+        }
+        [sportPrograms: sportProgramsToDo]
     }
 
     def history() {
