@@ -1,16 +1,18 @@
 package com.fitupness.domain
 
+import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.Specification
+import spock.lang.Unroll
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
 @TestFor(City)
+@Mock(City)
 class CitySpec extends Specification {
 
     def setup() {
-        mockDomain(City)
     }
 
     def cleanup() {
@@ -94,8 +96,6 @@ class CitySpec extends Specification {
 
     def "test null constraint"() {
 
-        mockDomain(City)
-
         when:
         new City().save()
 
@@ -105,8 +105,6 @@ class CitySpec extends Specification {
 
     def "test empty constraint"() {
 
-        mockDomain(City)
-
         when:
         new City(city: '').save()
 
@@ -114,4 +112,42 @@ class CitySpec extends Specification {
         City.count() == 0
     }
 
+    def "test list of data constraint"() {
+
+        when:
+        new City(city: c).save()
+
+        then:
+        City.findByCity(c) != null
+
+        when: 'delete all'
+        City.list()*.delete()
+        then: 'City must be empty'
+        City.list().size() == 0
+
+        where:
+        c << ['Are', 'ergreg', 'ecrhv', 'asasasas']
+
+    }
+
+
+    @Unroll
+    def "city name constraint"() {
+        setup:
+        mockForConstraintsTests(City)
+
+        when:
+        def city = new City()
+
+        city.city = names
+        city.validate()
+
+        then:
+        city.hasErrors() == !valid
+
+        where:
+        names << ['', 'Lviv', null]
+        valid << [false, true, false]
+
+    }
 }
