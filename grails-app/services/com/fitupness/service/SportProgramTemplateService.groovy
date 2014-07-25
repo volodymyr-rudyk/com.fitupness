@@ -31,8 +31,14 @@ class SportProgramTemplateService {
 //        sportProgramTemplate.save(flush: true)
 //    }
 
-//    def deleteTemplate(id) {
-//        def sportProgramTemplate = SportProgramTemplate.get(id)
+    def deleteTemplate(id) {
+
+        def trainer = profileService.trainer
+        def sportProgramTemplate = SportProgramTemplate.get(id)
+
+        println "delete template = " + trainer.removeFromSportProgramTemplates(sportProgramTemplate)
+        sportProgramTemplate.delete(flush: true)
+
 //        if (sportProgramTemplate) {
 //            def trainer = profileService.trainer
 //            if (trainer.sportPrograms.contains(sportProgramTemplate)) {
@@ -41,8 +47,8 @@ class SportProgramTemplateService {
 //                sportProgramTemplate.delete(flush: true)
 //            }
 //        }
-//    }
-//
+    }
+
 //    def addGroup(String name) {
 //        def sportProgramGroup = new SportProgramTemplateGroup(name: name, trainer: profileService.trainer)
 //        sportProgramGroup.save()

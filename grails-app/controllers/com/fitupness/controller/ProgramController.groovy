@@ -10,6 +10,8 @@ class ProgramController {
 
     def sportProgramService
 
+    def sportProgramTemplateService
+
     def index() {
 
         [programs : profileService.trainer.sportPrograms,
@@ -85,4 +87,55 @@ class ProgramController {
         render status.status
 
     }
+
+    // Templates block
+
+    def templates() {
+        render view: 'templates', model: [templates: profileService.trainer.sportProgramTemplates]
+    }
+
+    def createTemplate() {
+        sportProgramTemplateService.addTemplate(params)
+        redirect action: 'templates'
+    }
+
+    def deleteTemplate() {
+        sportProgramTemplateService.deleteTemplate(params.id)
+        redirect action: 'templates'
+    }
+
+    def updateTemplate() {
+
+    }
+
+    def ajaxGetTemplate() {
+        println params
+        def t = sportProgramTemplateService.getTemplate(params.id)
+        render(contentType: "text/json", {
+            template(name: t.name,
+                    repetition: t.repetition,
+                    count: t.count,
+                    weight: t.weight)
+        })
+
+
+    }
+
+//    def createTemplateGroup() {
+//        sportProgramService.addGroup(params.name)
+//        redirect action: 'groups'
+//    }
+//
+//    def deleteTemplateGroup() {
+//        sportProgramService.deleteGroup(params.id)
+//        redirect action: 'groups'
+//    }
+//
+//    def templateGroups(Long id) {
+//        if (id) {
+//            render view: 'group', model: [group: sportProgramService.getGroup(id)]
+//            return
+//        }
+//        render view: 'groups', model: [groups: sportProgramService.listGroup()]
+//    }
 }

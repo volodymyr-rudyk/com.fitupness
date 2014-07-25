@@ -11,69 +11,62 @@
     <meta name="layout" content="main"/>
     <title>Programs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
 
 <body>
 
-<h1>Program groups</h1>
-
 <div class="row">
     <div class="col-md-3">
-        <g:include view="program/program_menu.gsp"/>
+        <g:include view="trainer/trainer_menu.gsp"/>
     </div>
 
     <div class="col-md-9">
-        <form class="form-inline" style="margin-bottom: 15px" role="form" action="${createLink(action: 'createGroup')}">
-            <g:textField class="form-control" type="text" name="name" placeholder="Name"/>
-            <g:submitButton class="btn btn-primary form-control" name="submit"/>
-        </form>
+        <g:include view="program/program_menu.gsp"/>
 
+        <div class="tab-content">
+            <form class="form-inline" style="margin-bottom: 15px" role="form"
+                  action="${createLink(action: 'createGroup')}">
+                <g:textField class="form-control" type="text" name="name" placeholder="Name"/>
+                <g:submitButton class="btn btn-primary form-control" name="submit"/>
+            </form>
 
-        <div class="panel panel-default">
+            <div class="panel panel-default">
+                <div class="panel-heading">Program Groups</div>
 
-            <div class="panel-heading">
-                Program Groups
-            </div>
-
-            <table class="table">
-                <tr class="info">
-                    <th>Name</th>
-                    <th>SportProgramsCount</th>
-                    <th>Weight</th>
-                </tr>
-                <g:each in="${groups}" var="group">
-                    <tr>
-                        <td>${group.name}</td>
-                        <td>${group.sportPrograms.size()}</td>
-
-                        <td>
-                            <!-- Split button -->
-                            <div class="btn-group">
-                                <a class="btn btn-success"
-                                   href="${createLink(action: 'groups', params: [id: group.id])}">View</a>
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><g:link fragment="#" onclick="setGroupId(${group.id}); " data-toggle="modal"
-                                                data-target="#m_delete_group">Delete</g:link></li>
-                                </ul>
-                            </div>
-                        </td>
+                <table class="table">
+                    <tr class="info">
+                        <th>Name</th>
+                        <th>SportProgramsCount</th>
+                        <th>Weight</th>
                     </tr>
-                </g:each>
-            </table>
+                    <g:each in="${groups}" var="group">
+                        <tr>
+                            <td>${group.name}</td>
+                            <td>${group.sportPrograms.size()}</td>
 
+                            <td>
+                                <!-- Split button -->
+                                <div class="btn-group">
+                                    <a class="btn btn-success"
+                                       href="${createLink(action: 'groups', params: [id: group.id])}">View</a>
+                                    <button type="button" class="btn btn-default dropdown-toggle"
+                                            data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><g:link fragment="#" onclick="setGroupId(${group.id}); " data-toggle="modal"
+                                                    data-target="#m_delete_group">Delete</g:link></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </g:each>
+                </table>
+
+            </div>
         </div>
     </div>
-
-    <div class="row">
-        %{--<g:paginate controller="program"--}%
-        %{--action="index" total="${count}" />--}%
-    </div>
-
 
     <div class="modal fade" id="m_delete_group">
         <div class="modal-dialog">
