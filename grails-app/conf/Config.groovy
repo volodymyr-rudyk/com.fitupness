@@ -139,10 +139,6 @@ log4j.main = {
 
 grails.plugin.springsecurity.password.bcrypt.logrounds = 15
 
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.fitupness.domain.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.fitupness.domain.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.fitupness.domain.Role'
-
 /** authenticationProcessingFilter */
 grails.plugin.springsecurity.apf.filterProcessesUrl = '/auth/doLogin'
 grails.plugin.springsecurity.apf.usernameParameter = AuthConfig.SPRING_SECURITY_FORM_USERNAME_KEY // 'username'
@@ -152,7 +148,7 @@ grails.plugin.springsecurity.apf.passwordParameter = AuthConfig.SPRING_SECURITY_
 grails.plugin.springsecurity.failureHandler.defaultFailureUrl = '/auth/authfail?q=1'
 
 // successHandler
-grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/home'
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/home/index'
 
 /** authenticationEntryPoint */
 grails.plugin.springsecurity.auth.loginFormUrl = '/auth/login'
@@ -174,6 +170,21 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/**/images/**'  : ['permitAll'],
         '/**/favicon.ico': ['permitAll'],
         '/assets/**'     : ['permitAll'],
+]
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.fitupness.domain.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.fitupness.domain.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.fitupness.domain.Role'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+        '/'              : ['permitAll'],
+        '/index'         : ['permitAll'],
+        '/index.gsp'     : ['permitAll'],
+        '/assets/**'     : ['permitAll'],
+        '/**/js/**'      : ['permitAll'],
+        '/**/css/**'     : ['permitAll'],
+        '/**/images/**'  : ['permitAll'],
+        '/**/favicon.ico': ['permitAll'],
         '/**'            : ['IS_AUTHENTICATED_FULLY']
 ]
 
