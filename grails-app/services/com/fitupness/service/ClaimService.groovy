@@ -21,7 +21,7 @@ class ClaimService {
             def profileFrom = profileService.profile
             def claim = new Claim(from: profileFrom, to: profileTo)
             claim.save(flush: true)
-            return claim
+            claim
         }
     }
 
@@ -36,7 +36,7 @@ class ClaimService {
 //    def accept(to){
 //        def claim = claimTo(to)
 //        if(claim) {
-//            // TODO unidirection or idirection claim
+//            // TODO unidirectional or indirection claim
 //            def trainer = profileService.trainer
 //            if (trainer) {
 //                trainer.addToSportsmans(claim.to)
