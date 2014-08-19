@@ -161,16 +161,6 @@ grails.plugin.springsecurity.adh.errorPage = '/auth/denied?q=1'
 
 // providers
 grails.plugin.springsecurity.providerNames = ['daoAuthenticationProvider']
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-        '/'              : ['permitAll'],
-        '/index'         : ['permitAll'],
-        '/index.gsp'     : ['permitAll'],
-        '/**/js/**'      : ['permitAll'],
-        '/**/css/**'     : ['permitAll'],
-        '/**/images/**'  : ['permitAll'],
-        '/**/favicon.ico': ['permitAll'],
-        '/assets/**'     : ['permitAll'],
-]
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.fitupness.domain.User'
