@@ -20,7 +20,6 @@
     <div class="row col-md-6 col-md-offset-3 form-group">
         <h3 class="center">Create new Profile</h3>
         <g:form action="doSignup" method="post" role="form">
-
             <div class="form-group">
                 <strong>FirstName</strong>
             %{--<g:if test="${user?.hasErrors()}">--}%
@@ -37,7 +36,7 @@
                         <g:fieldError field="firstname" bean="${user}"></g:fieldError>
                     </p>
                 </g:if>
-                <g:textField class="form-control  " type="text" name="firstname"/>
+                <g:textField class="form-control" type="text" name="firstname"/>
             </div>
 
             <div class="form-group">
@@ -83,15 +82,6 @@
         %{--<g:textField class="form-control" type="password" name="confirmpassword"/>--}%
         %{--</div>--}%
 
-            <div class="form-group">
-                <strong>phone</strong>
-                <g:if test="${user?.hasErrors()}">
-                    <p class="bg-danger">
-                        <g:fieldError field="phone" bean="${user}"></g:fieldError>
-                    </p>
-                </g:if>
-                <g:textField class="form-control" type="phone" name="phone"/>
-            </div>
             ${profileTypes.type.each { it }}
             <div class="form-group">
                 <g:radioGroup class="radio-inline" labels="${profileTypes.type}" name="type" value="1"
