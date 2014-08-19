@@ -20,18 +20,15 @@
     </div>
 
     <div class="col-md-8">
-        <h2>Profile data</h2>
-
         <div>firstname : ${trainer.profile.firstname}</div>
-
         <div>lastname : ${trainer.profile.lastname}</div>
-
         <div>address : ${trainer.profile.address?.country?.country},
             ${trainer.profile.address?.city?.city}</div>
-
         <div>body weight : ${trainer.profile.body?.weight}</div>
-
         <div>profile type : ${trainer.profile.profileType?.type}</div>
+
+        <div>rating : ${trainer?.profile.rating?.points}</div>
+
     </div>
 </div>
 

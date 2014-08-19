@@ -38,6 +38,9 @@
                     <li <g:if test="${controllerName == 'home'}">class="active"</g:if>><a
                             href="${createLink(controller: 'home')}">Home</a></li>
 
+                    <li <g:if test="${controllerName == 'sportClub'}">class="active"</g:if>><a
+                            href="${createLink(controller: 'sportClub')}">SportClub</a></li>
+
                     <li <g:if test="${controllerName == 'about'}">class="active"</g:if>><a
                             href="${createLink(controller: 'about')}">About</a></li>
 
@@ -54,6 +57,7 @@
 
                         <li><a href="${createLink(controller: 'auth', action: 'doLogout')}">Log out</a></li>
                     </sec:ifLoggedIn>
+
                 </ul>
 
             </div>

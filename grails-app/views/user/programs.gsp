@@ -20,10 +20,9 @@
     </div>
 
     <div class="col-md-9">
-        <h2>Programs</h2>
+        <g:include view="user/program_history_tab_menu.gsp"/>
 
         <div class="panel panel-default">
-
             <table class="table">
                 <tr class="info">
                     <th>Name</th>
@@ -107,6 +106,7 @@
 
         </div>
     </div>
+
 </div>
 </body>
 </html>

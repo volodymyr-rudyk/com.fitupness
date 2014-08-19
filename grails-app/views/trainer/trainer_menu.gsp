@@ -15,7 +15,5 @@
     <a href="${createLink(controller: 'trainer', action: 'claimsList')}" class="list-group-item
             <g:if test="${actionName == 'claimsList'}">active</g:if>">
         <g:if test="${claimsCount > 0}"><span class="badge">${claimsCount}</span></g:if>Claims</a>
-    <a href="${createLink(controller: 'sportClub')}" class="list-group-item
-            <g:if test="${controllerName == 'sportClub'}">active</g:if>">
-        SportClub</a>
+
 </ul>

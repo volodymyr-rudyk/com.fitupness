@@ -9,12 +9,11 @@
     <a href="${createLink(controller: 'user')}" class="list-group-item
             <g:if test="${actionName == 'index'}">active</g:if>">Profile</a>
 
+    <a href="${createLink(action: 'programs')}" class="list-group-item
+    <g:if test="${(controllerName == 'user' && actionName == 'programs') ||
+            (controllerName == 'user' && actionName == 'history')}">active</g:if>">Programs</a>
+
     <a href="${createLink(action: 'trainerList')}" class="list-group-item
     <g:if test="${actionName == 'trainerList'}">active</g:if>">TrainerList</a>
 
-    <a href="${createLink(action: 'programs')}" class="list-group-item
-    <g:if test="${actionName == 'programs'}">active</g:if>">Programs</a>
-
-    <a href="${createLink(action: 'history')}" class="list-group-item
-    <g:if test="${actionName == 'history'}">active</g:if>">History</a>
 </ul>
