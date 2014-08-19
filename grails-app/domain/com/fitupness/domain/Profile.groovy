@@ -14,7 +14,7 @@ class Profile {
     static belongsTo = User
 
     static constraints = {
-//        phone nullable: true
+        phone nullable: true
         address nullable: true
         body nullable: true
     }
